@@ -1,7 +1,12 @@
 import './App.css'
+import Counter from './Counter'
 
 function App() {
-  return <h1>initial</h1>
+  return (
+    <>
+      <Counter initialCounter={42}/>
+    </>
+    )
 }
 
 export default App
