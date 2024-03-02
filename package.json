@@ -8,9 +8,9 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "jest",
-    "cy:run": "cypress run",
-    "cy:e2e": "start-server-and-test dev http://localhost:9999 cy:run"
+    "test:unit": "jest",
+    "test:e2e": "start-server-and-test dev http://localhost:9999 cy:run",
+    "cy:run": "cypress run"
   },
   "dependencies": {
     "react": "^18.2.0",
