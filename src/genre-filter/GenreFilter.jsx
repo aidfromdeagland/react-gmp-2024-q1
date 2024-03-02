@@ -1,26 +1,16 @@
+import './GenreFilter.css';
+
 const GenreFilter = ({ genres, selectedGenre, onSelect }) => {
   return (
-    <ul
-      style={{
-        listStyle: 'none',
-        padding: '0',
-      }}>
+    <ul className="genre-list">
       {
         genres.map((genre) => (
-          <li
-            key={genre}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              flex: '1 1 0'
-            }}>
+          <li key={genre} className="genre-item">
             <button
               onClick={() => {onSelect(genre)}}
-              style={{
-                backgroundColor: selectedGenre === genre ? 'gray' : 'white',
-                color: selectedGenre === genre ? 'white' : 'gray',
-              }}>
-              {genre}
+              className={selectedGenre === genre ? 'selected' : ''}
+            >
+            {genre}
             </button>
           </li>
         ))

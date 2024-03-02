@@ -27,8 +27,8 @@ describe('GenreFilter', () => {
     const selectedGenreElement = screen.getByText(selectedGenre);
 
     expect(selectedGenreElement).toHaveStyle({
-      backgroundColor: 'gray',
-      color: 'white'
+      backgroundColor: 'rgb(128, 128, 128)',
+      color: 'rgb(255, 255, 255)',
     });
   });
 
