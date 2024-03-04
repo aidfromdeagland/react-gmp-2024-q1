@@ -1,0 +1,30 @@
+.counter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 150px;
+  border: 2px solid rgb(128, 128, 128);
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgb(224, 224, 224);
+}
+
+.counter button {
+  background-color: rgb(255, 255, 255);
+  color: rgb(128, 128, 128);
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+.counter button:hover {
+  background-color: rgb(196, 196, 196);
+}
+
+.counter span {
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(128, 128, 128);
+}

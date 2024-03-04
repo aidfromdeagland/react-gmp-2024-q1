@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './App.css';
-import Counter from './Counter';
-import GenreFilter from './GenreFIlter';
-import Search from './Search';
+import Counter from './counter/Counter';
+import GenreFilter from './genre-filter/GenreFilter';
+import Search from './search/Search';
 
 const genres = [
   'Lorem',
