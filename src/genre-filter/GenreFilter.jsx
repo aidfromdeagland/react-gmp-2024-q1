@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import './GenreFilter.css';
 
 const GenreFilter = ({ genres, selectedGenre, onSelect }) => {
@@ -9,6 +10,7 @@ const GenreFilter = ({ genres, selectedGenre, onSelect }) => {
             <button
               onClick={() => {onSelect(genre)}}
               className={selectedGenre === genre ? 'selected' : ''}
+              type='button'
             >
             {genre}
             </button>
@@ -17,6 +19,12 @@ const GenreFilter = ({ genres, selectedGenre, onSelect }) => {
       }
     </ul>
   );
+};
+
+GenreFilter.propTypes = {
+  genres: PropTypes.arrayOf(PropTypes.string),
+  selectedGenre: PropTypes.string,
+  onSelect: PropTypes.func,
 };
   
 export default GenreFilter;

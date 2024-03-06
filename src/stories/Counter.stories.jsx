@@ -1,5 +1,5 @@
 import { within, userEvent, expect } from '@storybook/test';
-import Counter from "../counter/Counter";
+import Counter from '../counter/Counter';
 
 export default {
     title: 'Counter',
@@ -9,7 +9,7 @@ export default {
     },
 };
 
-export const initialCounterProp = {
+export const initialCounter = {
   args: {
     initialCounter: 42
   },
