@@ -1,0 +1,51 @@
+.container {
+    width: 200px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.poster {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container:hover .overlay {
+    opacity: 1;
+}
+
+.info {
+    text-align: center;
+    color: #fff;
+}
+
+.title {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.year,
+.genres {
+    font-size: 14px;
+    margin-bottom: 3px;
+}

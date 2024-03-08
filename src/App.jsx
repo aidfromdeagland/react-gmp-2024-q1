@@ -3,6 +3,7 @@ import './App.css';
 import Counter from './counter/Counter';
 import GenreFilter from './genre-filter/GenreFilter';
 import Search from './search/Search';
+import MoviesPage from './movies-page/MoviesPage';
 
 const genres = [
   'Lorem',
@@ -34,9 +35,10 @@ function App() {
         flex: '1 1 0',
         gap: '1em',
       }}>
-      <Counter initialCounter={42}/>
+      <Counter initialCounter={42} />
       <Search initialQuery='initial' onSearch={console.log} />
       <GenreFilter genres={genres} selectedGenre={genre} onSelect={onSelect} />
+      <MoviesPage />
     </div>
   )
 }
