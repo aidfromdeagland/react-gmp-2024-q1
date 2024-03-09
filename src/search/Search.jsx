@@ -12,6 +12,7 @@ const Search = ({ initialQuery, onSearch }) => {
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter' && !event.repeat && isInputFocused) {
+      event.stopPropagation();
       onSearch(query);
     }
   };

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './App.css';
+import styles from './App.module.css';
 import Counter from './counter/Counter';
 import GenreFilter from './genre-filter/GenreFilter';
 import Search from './search/Search';
@@ -26,20 +26,16 @@ function App() {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: '1 1 0',
-        gap: '1em',
-      }}>
-      <Counter initialCounter={42} />
-      <Search initialQuery='initial' onSearch={console.log} />
-      <GenreFilter genres={genres} selectedGenre={genre} onSelect={onSelect} />
-      <MoviesPage />
-    </div>
+    <>
+      <div className={styles.container}>
+        <Counter initialCounter={42} />
+        <Search initialQuery='initial' onSearch={console.log} />
+        <GenreFilter genres={genres} selectedGenre={genre} onSelect={onSelect} />
+        <MoviesPage />
+      </div>
+      <div id='modal' />
+    </>
+
   )
 }
 
