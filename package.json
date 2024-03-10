@@ -55,7 +55,8 @@
     "testEnvironment": "jsdom",
     "transform": {
       "\\.[jt]sx?$": "babel-jest",
-      "\\.css$": "jest-transform-stub"
+      "\\.css$": "jest-transform-stub",
+      "\\.svg$": "jest-transform-stub"
     },
     "setupFilesAfterEnv": [
       "<rootDir>/setupTests.js"

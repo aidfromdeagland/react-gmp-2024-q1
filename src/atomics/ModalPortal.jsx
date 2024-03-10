@@ -46,7 +46,6 @@ const ModalPortal = ({ onClose, children, ...props }) => {
       {children}
     </div>
   );
-
 }
 
 ModalPortal.propTypes = {

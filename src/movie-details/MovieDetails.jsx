@@ -17,6 +17,7 @@ const MovieDetails = ({ movie: {
         <ImageWithFallback
           src={Poster}
           fallback={fallbackImageSrc}
+          alt={`${Title} poster`}
         />
       </div>
       <div className={styles.details}>

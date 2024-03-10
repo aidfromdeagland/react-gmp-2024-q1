@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styles from './SortControl.module.css';
 
-const SortControl = ({ sortBy, onSelect }) => {
+const SortControl = ({ sortBy = '', onSelect }) => {
     const handleSelectionChange = (event) => {
         onSelect(event.target.value);
     };
@@ -19,7 +19,7 @@ const SortControl = ({ sortBy, onSelect }) => {
 };
 
 SortControl.propTypes = {
-    currentSelection: PropTypes.string,
+    sortBy: PropTypes.string,
     onSelect: PropTypes.func,
 }
 
