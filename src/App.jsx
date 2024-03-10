@@ -1,41 +1,58 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './App.module.css';
 import Counter from './counter/Counter';
 import GenreFilter from './genre-filter/GenreFilter';
 import Search from './search/Search';
+import SortControl from './sort/SortControl';
 import MoviesPage from './movies-page/MoviesPage';
+import moviesData from './fakeData/films.json';
 
-const genres = [
-  'Lorem',
-  'ipsum',
-  'dolor',
-  'sit',
-  'amet,',
-  'consectetur',
-  'adipiscing',
-  'elit',
-]
+const SortMap = new Map([
+  ['releaseDate', ((a, b) => a.Year > b.Year ? 1 : -1)],
+  ['title', ((a, b) => a.Title > b.Title ? 1 : -1)],
+]);
+
+const genres = Array.from(new Set(moviesData.map(film => film.Genre).join(', ').split(', ')));
 
 function App() {
   const [genre, setGenre] = useState(genres[0]);
+  const [sorting, setSorting] = useState('');
+  const [movies, setMovies] = useState(moviesData);
 
-  const onSelect = (selectedGenre) => {
-    if (genres.includes(selectedGenre) && selectedGenre !== genre) {
+  const onGenreSelect = (selectedGenre) => {
+    if (selectedGenre === genre) {
+      setGenre('');
+    } else if (genres.includes(selectedGenre)) {
       setGenre(selectedGenre);
     }
   };
+
+  const onSortSelect = (selectedSorting) => {
+    if (selectedSorting === sorting) {
+      setSorting('');
+    } else {
+      setSorting(selectedSorting);
+    }
+  };
+
+  useEffect(() => {
+    const moviesFilteredByGenre = moviesData.filter((movie) => genre ? movie.Genre?.includes(genre) : true);
+    const sorter = SortMap.get(sorting);
+    const moviesOrdered = sorter ? moviesFilteredByGenre.sort(sorter) : moviesFilteredByGenre;
+    setMovies(moviesOrdered);
+  }, [genre, sorting]);
 
   return (
     <>
       <div className={styles.container}>
         <Counter initialCounter={42} />
         <Search initialQuery='initial' onSearch={console.log} />
-        <GenreFilter genres={genres} selectedGenre={genre} onSelect={onSelect} />
-        <MoviesPage />
+        <GenreFilter genres={genres} selectedGenre={genre} onSelect={onGenreSelect} />
+        <SortControl sortBy={sorting} onSelect={onSortSelect} />
+        <MoviesPage movies={movies} />
       </div>
       <div id='modal' />
     </>
-
   )
 }
 

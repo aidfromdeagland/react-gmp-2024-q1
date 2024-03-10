@@ -1,12 +1,12 @@
+import PropTypes from 'prop-types';
 import { useCallback, useState } from 'react';
 import { createPortal } from 'react-dom';
-import movies from '../fakeData/films.json'
 import MovieTile from '../movie-tile/MovieTile';
 import MovieDetails from '../movie-details/MovieDetails';
 import ModalPortal from '../atomics/ModalPortal';
 import styles from './MoviesPage.module.css';
 
-const MoviesPage = () => {
+const MoviesPage = ({ movies = {} }) => {
   const [modalMovieData, setModalMovieData] = useState(null);
   const closeModal = useCallback(() => {
     setModalMovieData(null);
@@ -36,5 +36,9 @@ const MoviesPage = () => {
     </div>
   );
 };
+
+MoviesPage.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.object),
+}
 
 export default MoviesPage;
