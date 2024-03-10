@@ -1,12 +1,17 @@
 .genre-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5em;
   list-style: none;
   padding: 0;
 }
 
 .genre-item {
+  white-space: nowrap;
   display: flex;
   flex-direction: column;
-  flex: 1 1 0;
+  flex: 0 0 0;
 }
 
 .genre-item button {
