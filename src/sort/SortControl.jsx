@@ -19,7 +19,7 @@ const SortControl = ({ sortBy = '', onSelect }) => {
 };
 
 SortControl.propTypes = {
-    sortBy: PropTypes.string,
+    sortBy: PropTypes.oneOf(['', 'title', 'releaseDate']),
     onSelect: PropTypes.func,
 }
 

@@ -12,5 +12,6 @@ export const initialGenre = {
   },
   parameters: {
     actions: { argTypesRegex: '^on.*' },
+    layout: 'centered',
   },
 };

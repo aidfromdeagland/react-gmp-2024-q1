@@ -11,5 +11,6 @@ export const initialQuery = {
   },
   parameters: {
     actions: { argTypesRegex: '^on.*' },
+    layout: 'centered',
   },
 };
