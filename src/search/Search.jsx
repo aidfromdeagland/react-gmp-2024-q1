@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import './Search.css';
 
 const Search = ({ initialQuery, onSearch }) => {
@@ -11,6 +12,7 @@ const Search = ({ initialQuery, onSearch }) => {
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter' && !event.repeat && isInputFocused) {
+      event.stopPropagation();
       onSearch(query);
     }
   };
@@ -39,11 +41,17 @@ const Search = ({ initialQuery, onSearch }) => {
         onBlur={handleInputBlur}
       />
       <button
+        type="button"
         className="search-button"
         onClick={handleSearch}
       >Search</button>
     </div>
   );
+};
+
+Search.propTypes = {
+  initialQuery: PropTypes.string,
+  onSearch: PropTypes.func,
 };
 
 export default Search;

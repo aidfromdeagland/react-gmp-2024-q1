@@ -1,10 +1,11 @@
 import React from "react"
+import PropTypes from 'prop-types';
 import "./Counter.css";
 class Counter extends React.Component{
   constructor(props) {
     super(props);
     
-    this.state = { value: props.initialCounter ?? 0 };
+    this.state = { value: props.initialCounter };
     this.incrementCounter = this.increaseValue.bind(this);
     this.decrementCounter = this.decreaseValue.bind(this);
   }
@@ -21,11 +22,19 @@ class Counter extends React.Component{
     return React.createElement(
       "div",
       { className: 'counter' },
-      React.createElement("button", { onClick: this.decrementCounter }, "-"),
+      React.createElement("button", { type: 'button', onClick: this.decrementCounter }, "-"),
       React.createElement("span", null, this.state.value),
-      React.createElement("button", { onClick: this.incrementCounter }, "+"),
+      React.createElement("button", { type: 'button', onClick: this.incrementCounter }, "+"),
     );
   }
 }
+
+Counter.propTypes = {
+  initialCounter: PropTypes.number,
+};
+
+Counter.defaultProps = {
+  initialCounter: 42,
+};
 
 export default Counter;
