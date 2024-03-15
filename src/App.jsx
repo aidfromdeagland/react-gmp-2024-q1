@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import styles from './App.module.css';
 import Counter from './counter/Counter';
 import GenreFilter from './genre-filter/GenreFilter';
 import Search from './search/Search';
 import SortControl from './sort/SortControl';
 import MoviesPage from './movies-page/MoviesPage';
+import Dialog from './dialog/Dialog';
+import MovieForm from './movie-form/MovieForm';
 import moviesData from './fakeData/films.json';
 
 const SortMap = new Map([
@@ -18,6 +21,8 @@ function App() {
   const [genre, setGenre] = useState(genres[0]);
   const [sorting, setSorting] = useState('');
   const [movies, setMovies] = useState(moviesData);
+  const [isModalShown, setIsModalShown] = useState(false);
+  const addMovie = useCallback(() => setIsModalShown(true), []);
 
   const onGenreSelect = (selectedGenre) => {
     if (selectedGenre === genre) {
@@ -46,11 +51,18 @@ function App() {
     <>
       <div className={styles.container}>
         <Counter initialCounter={42} />
+        <button onClick={addMovie}>Add movie</button>
         <Search initialQuery='initial' onSearch={console.log} />
         <GenreFilter genres={genres} selectedGenre={genre} onSelect={onGenreSelect} />
         <SortControl sortBy={sorting} onSelect={onSortSelect} />
         <MoviesPage movies={movies} />
       </div>
+      {isModalShown && createPortal(
+        <Dialog title="Add movie" onClose={() => setIsModalShown(false)}>
+          <MovieForm movieData={{}} onSubmit={(submitData) => { console.log(submitData); setIsModalShown(false); }} />
+        </Dialog>,
+        document.getElementById('modal'),
+      )}
       <div id='modal' />
     </>
   )
