@@ -37,7 +37,7 @@
 
 .info {
     text-align: center;
-    color: #fff;
+    color: rgb(255, 255, 255);
 }
 
 .title {
@@ -50,3 +50,18 @@
     font-size: 14px;
     margin-bottom: 3px;
 }
+
+.button {
+    background-color: rgb(64, 64, 64);
+    transition: all 0.2s;
+}
+
+.button:hover {
+    transform: scale(1.1);
+    border: 2px solid rgb(196, 196, 196);
+}
+
+.button.delete {
+    background-color: rgb(255, 128, 128);
+}
+

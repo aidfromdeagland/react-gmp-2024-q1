@@ -32,7 +32,7 @@ const MovieForm = ({ movieData = {}, onSubmit }) => {
             })}
           </label>
         })
-      };
+      }
       <button type="submit" className={styles.movieFormButton}>Submit</button>
     </form>
   );

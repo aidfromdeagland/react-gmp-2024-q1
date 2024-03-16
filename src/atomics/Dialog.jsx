@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import ModalPortal from "../atomics/ModalPortal";
+import ModalPortal from "./ModalPortal";
 
 const headerStyle = {
   margin: '1rem auto',

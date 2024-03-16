@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styles from './App.module.css';
 import Counter from './counter/Counter';
 import GenreFilter from './genre-filter/GenreFilter';
@@ -6,6 +6,8 @@ import Search from './search/Search';
 import SortControl from './sort/SortControl';
 import MoviesPage from './movies-page/MoviesPage';
 import moviesData from './fakeData/films.json';
+
+let movieId = moviesData.length;
 
 const SortMap = new Map([
   ['releaseDate', ((a, b) => a.Year > b.Year ? 1 : -1)],
@@ -18,6 +20,27 @@ function App() {
   const [genre, setGenre] = useState(genres[0]);
   const [sorting, setSorting] = useState('');
   const [movies, setMovies] = useState(moviesData);
+  const [matchedMovies, setMatchedMovies] = useState(movies);
+  const applyMovieAction = useCallback((type, movieData) => {
+    switch (type) {
+      case 'add':
+        setMovies([...movies, {...movieData, id: ++movieId}]);
+        break;
+      case 'edit': {
+        setMovies(movies.map((movie) => {
+          return movie.id === movieData.id
+            ? { ...movieData }
+            : movie;
+        }));
+        break;
+      }
+      case 'delete':
+        setMovies(movies.filter(movie => movie.Title !== movieData.Title));
+        break;
+      default:
+        break;
+    }
+  }, [movies]);
 
   const onGenreSelect = (selectedGenre) => {
     if (selectedGenre === genre) {
@@ -36,11 +59,11 @@ function App() {
   };
 
   useEffect(() => {
-    const moviesFilteredByGenre = moviesData.filter((movie) => genre ? movie.Genre?.includes(genre) : true);
+    const moviesFilteredByGenre = movies.filter((movie) => genre ? movie.Genre?.includes(genre) : true);
     const sorter = SortMap.get(sorting);
     const moviesOrdered = sorter ? moviesFilteredByGenre.sort(sorter) : moviesFilteredByGenre;
-    setMovies(moviesOrdered);
-  }, [genre, sorting]);
+    setMatchedMovies(moviesOrdered);
+  }, [movies, genre, sorting]);
 
   return (
     <>
@@ -49,7 +72,7 @@ function App() {
         <Search initialQuery='initial' onSearch={console.log} />
         <GenreFilter genres={genres} selectedGenre={genre} onSelect={onGenreSelect} />
         <SortControl sortBy={sorting} onSelect={onSortSelect} />
-        <MoviesPage movies={movies} />
+        <MoviesPage movies={matchedMovies} applyAction={applyMovieAction}/>
       </div>
       <div id='modal' />
     </>

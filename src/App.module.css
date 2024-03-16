@@ -9,8 +9,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: calc(100vw - (100vw - 100%));
-    flex: 1 1 0;
+    width: 100vw;
     gap: 1em;
     padding: 1em;
 }

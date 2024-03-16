@@ -11,6 +11,10 @@ const MovieTile = ({ movie = {}, clickHandler }) => {
     event.stopPropagation();
     clickHandler('edit', movie);
   };
+  const handleDeleteClick = (event) => {
+    event.stopPropagation();
+    clickHandler('delete', movie);
+  };
 
   return (
     <div className={styles.container} onClick={handleTileClick}>
@@ -24,10 +28,11 @@ const MovieTile = ({ movie = {}, clickHandler }) => {
         <div className={styles.info}>
           <p className={styles.year}>Released: {movie.Year}</p>
           <p className={styles.genres}>Genres: {movie.Genre}</p>
-          <button type="button" onClick={handleEditClick}>Edit</button>
+          <button type="button" onClick={handleEditClick} className={styles.button}>Edit</button>
+          <button type="button" onClick={handleDeleteClick} className={`${styles.button} ${styles.delete}`}>Delete</button>
         </div>
       </div>
-      <h3 className={styles.title}>{movie.title}</h3>
+      <h3 className={styles.title}>{movie.Title}</h3>
     </div>
   );
 };

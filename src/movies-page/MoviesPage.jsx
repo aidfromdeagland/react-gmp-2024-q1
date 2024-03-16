@@ -4,8 +4,8 @@ import MovieTile from '../movie-tile/MovieTile';
 import useMoviePortal from '../hooks/useMoviePortal';
 import styles from './MoviesPage.module.css';
 
-const MoviesPage = ({ movies = [] }) => {
-  const [modalData, setModalData] = useState();
+const MoviesPage = ({ movies = [], applyAction }) => {
+  const [modalData, setModalData] = useState(null);
   const closeModal = useCallback(() => {
     setModalData(null);
   }, []);
@@ -13,7 +13,7 @@ const MoviesPage = ({ movies = [] }) => {
     setModalData(type ? { type, data } : null );
   }, []);
 
-  const moviePortal = useMoviePortal(modalData, closeModal, closeModal);
+  const moviePortal = useMoviePortal(modalData, closeModal, applyAction);
 
   return (
     <div className={styles.container}>
@@ -35,6 +35,7 @@ const MoviesPage = ({ movies = [] }) => {
 
 MoviesPage.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.object),
+  applyAction: PropTypes.func,
 }
 
 export default MoviesPage;
