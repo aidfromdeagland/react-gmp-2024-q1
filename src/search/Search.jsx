@@ -30,7 +30,7 @@ const Search = ({ initialQuery, onSearch }) => {
   };
 
   return (
-    <div className="search-container">
+    <div className="container">
       <input
         className="search-input"
         type="text"

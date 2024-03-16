@@ -1,38 +1,34 @@
 import PropTypes from 'prop-types';
 import { useCallback, useState } from 'react';
-import { createPortal } from 'react-dom';
 import MovieTile from '../movie-tile/MovieTile';
-import MovieDetails from '../movie-details/MovieDetails';
-import ModalPortal from '../atomics/ModalPortal';
+import useMoviePortal from '../hooks/useMoviePortal';
 import styles from './MoviesPage.module.css';
 
-const MoviesPage = ({ movies = {} }) => {
-  const [modalMovieData, setModalMovieData] = useState(null);
+const MoviesPage = ({ movies = [] }) => {
+  const [modalData, setModalData] = useState();
   const closeModal = useCallback(() => {
-    setModalMovieData(null);
+    setModalData(null);
   }, []);
+  const showModal = useCallback((type, data) => {
+    setModalData(type ? { type, data } : null );
+  }, []);
+
+  const moviePortal = useMoviePortal(modalData, closeModal, closeModal);
 
   return (
     <div className={styles.container}>
+      <button onClick={() => {showModal('add', {})}}>Add movie</button>
       <ul className={styles.list}>
         {movies.map(movie => (
           <li key={movie.Title} className={styles.listItem}>
             <MovieTile
-              title={movie.Title}
-              year={movie.Year}
-              genres={movie.Genre}
-              posterUrl={movie.Poster}
-              clickHandler={() => setModalMovieData(movie)}
+              movie={movie}
+              clickHandler={showModal}
             />
           </li>
         ))}
       </ul>
-      {modalMovieData && createPortal(
-        <ModalPortal onClose={closeModal}>
-          <MovieDetails movie={modalMovieData} />
-        </ModalPortal>,
-        document.getElementById('modal'),
-      )}
+      {moviePortal}
     </div>
   );
 };
