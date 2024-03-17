@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from 'prop-types';
-import "./Counter.css";
+import styles from "./Counter.module.css";
 class Counter extends React.Component{
   constructor(props) {
     super(props);
@@ -21,7 +21,7 @@ class Counter extends React.Component{
   render() {
     return React.createElement(
       "div",
-      { className: 'counter' },
+      { className: styles.container, 'data-testid': 'counter' },
       React.createElement("button", { type: 'button', onClick: this.decrementCounter }, "-"),
       React.createElement("span", null, this.state.value),
       React.createElement("button", { type: 'button', onClick: this.incrementCounter }, "+"),

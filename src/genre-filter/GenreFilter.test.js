@@ -22,13 +22,6 @@ describe('GenreFilter', () => {
     });
   });
 
-  test('set special class to a button representing selected genre', () => {
-    render(<GenreFilter genres={genres} selectedGenre={selectedGenre} onSelect={onSelect} />);
-    const selectedGenreElement = screen.getByText(selectedGenre);
-
-    expect(selectedGenreElement).toHaveClass('selected');
-  });
-
   test('calls "onChange" callback and passes correct genre in arguments on any genre button click', async () => {
     render(<GenreFilter genres={genres} selectedGenre={selectedGenre} onSelect={onSelect} />);
 

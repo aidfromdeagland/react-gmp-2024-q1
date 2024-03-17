@@ -1,16 +1,19 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import MoviesPage from './MoviesPage';
+import App from '../App';
 
 describe('MoviesPage', () => {
   const mockMovies = [
     {
+      id: 1,
       Title: 'Movie 1',
       Year: '2021',
       Genre: 'Action',
       Poster: 'path/to/poster1.jpg',
     },
     {
+      id: 2,
       Title: 'Movie 2',
       Year: '2020',
       Genre: 'Comedy',
@@ -24,34 +27,31 @@ describe('MoviesPage', () => {
     expect(movieTiles).toHaveLength(mockMovies.length);
   });
 
-  it('opens movie details modal when a movie tile is clicked', async () => {
+  it('passes action to the parent modal when a movie tile is clicked', async () => {
     render(
-      <div>
-        <MoviesPage movies={mockMovies} />
-        <div id="modal"></div>
-      </div>
+      <App />
     );
-    const movieTile = screen.getByText('Movie 1');
+
+    const movieTile = screen.getByText('Avatar');
     await userEvent.click(movieTile);
     await waitFor(() => {
-      const movieDetails = screen.getByRole('heading', { level: 2 });
+      const movieDetails = screen.getAllByRole('heading', { level: 2 })[1];
       expect(movieDetails).toBeInTheDocument();
     });
   });
 
   it('closes movie details modal when closed', async () => {
     render(
-      <div>
-        <MoviesPage movies={mockMovies} />
-        <div id="modal"></div>
-      </div>
+      <App />
     );
-    const movieTile = screen.getByText('Movie 1');
+
+    const movieTile = screen.getByText('Avatar');
     await userEvent.click(movieTile);
+    expect(screen.queryAllByRole('heading', { level: 2 })).toHaveLength(2);
     const closeButton = screen.getByRole('button', { name: 'Close' });
     await userEvent.click(closeButton);
     await waitFor(() => {
-      expect(screen.queryByRole('heading', { level: 2 })).not.toBeInTheDocument();
+      expect(screen.queryAllByRole('heading', { level: 2 })).toHaveLength(0);
     });
   });
 });

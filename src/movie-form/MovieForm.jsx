@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import styles from './MovieForm.module.css';
 
 const inputsSchema = {
-  Title: { title: 'Title', type: 'input', className: styles.movieFormInput },
-  Rated: { title: 'Age rating', type: 'input', className: styles.movieFormInput },
-  Year: { title: 'Release year', type: 'input', className: styles.movieFormInput },
-  Genre: { title: 'Genres', type: 'input', className: styles.movieFormInput },
-  Poster: { title: 'Poster URL', type: 'input', className: styles.movieFormInput },
-  Runtime: { title: 'Duration', type: 'input', className: styles.movieFormInput },
-  Plot: { title: 'Description', type: 'textarea', className: styles.movieFormInput },
+  Title: { title: 'Title', type: 'input', className: styles.input },
+  Rated: { title: 'Age rating', type: 'input', className: styles.input },
+  Year: { title: 'Release year', type: 'input', className: styles.input },
+  Genre: { title: 'Genres', type: 'input', className: styles.input },
+  Poster: { title: 'Poster URL', type: 'input', className: styles.input },
+  Runtime: { title: 'Duration', type: 'input', className: styles.input },
+  Plot: { title: 'Description', type: 'textarea', className: styles.input },
 };
 
 const MovieForm = ({ movieData = {}, onSubmit }) => {
@@ -20,10 +20,10 @@ const MovieForm = ({ movieData = {}, onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.movieForm}>
+    <form onSubmit={handleSubmit} className={styles.form}>
       {Object.entries(inputsSchema)
         .map(([name, config]) => {
-          return <label key={name} className={styles.movieFormLabel}>
+          return <label key={name} className={styles.label}>
             {name}:
             {React.createElement(config.type, {
               name,
@@ -33,7 +33,7 @@ const MovieForm = ({ movieData = {}, onSubmit }) => {
           </label>
         })
       }
-      <button type="submit" className={styles.movieFormButton}>Submit</button>
+      <button type="submit" className={styles.button}>Submit</button>
     </form>
   );
 };

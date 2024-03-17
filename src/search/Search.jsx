@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import './Search.css';
+import styles from './Search.module.css';
 
 const Search = ({ initialQuery, onSearch }) => {
   const [query, setQuery] = useState(initialQuery);
@@ -30,9 +30,9 @@ const Search = ({ initialQuery, onSearch }) => {
   };
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       <input
-        className="search-input"
+        className={styles.input}
         type="text"
         value={query}
         onChange={handleInputChange}
@@ -42,7 +42,7 @@ const Search = ({ initialQuery, onSearch }) => {
       />
       <button
         type="button"
-        className="search-button"
+        className={styles.button}
         onClick={handleSearch}
       >Search</button>
     </div>

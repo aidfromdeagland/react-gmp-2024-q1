@@ -1,13 +1,10 @@
 import PropTypes from 'prop-types';
 import ModalPortal from "./ModalPortal";
-
-const headerStyle = {
-  margin: '1rem auto',
-}
+import styles from './Dialog.module.css';
 
 function Dialog({ title, onClose, children }) {
   return <ModalPortal onClose={onClose}>
-    <h2 style={headerStyle}>
+    <h2 className={styles.header}>
       {title}
     </h2>
     {children}

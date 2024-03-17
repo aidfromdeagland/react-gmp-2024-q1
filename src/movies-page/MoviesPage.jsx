@@ -10,17 +10,17 @@ const MoviesPage = ({ movies = [], applyAction }) => {
     setModalData(null);
   }, []);
   const showModal = useCallback((type, data) => {
-    setModalData(type ? { type, data } : null );
+    setModalData(type ? { type, data } : null);
   }, []);
 
   const moviePortal = useMoviePortal(modalData, closeModal, applyAction);
 
   return (
     <div className={styles.container}>
-      <button onClick={() => {showModal('add', {})}}>Add movie</button>
+      <button className={styles.button} onClick={() => {showModal('add', {})}}>Add movie</button>
       <ul className={styles.list}>
         {movies.map(movie => (
-          <li key={movie.Title} className={styles.listItem}>
+          <li key={movie.id} className={styles.listItem}>
             <MovieTile
               movie={movie}
               clickHandler={showModal}

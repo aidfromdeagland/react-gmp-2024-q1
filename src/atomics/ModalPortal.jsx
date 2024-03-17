@@ -1,17 +1,6 @@
 import PropTypes from 'prop-types';
+import styles from './ModalPortal.module.css'
 import { useEffect } from 'react';
-
-const modalStyles = {
-  display: 'flex',
-  flexDirection: 'column',
-  width: '100vw',
-  height: '100vh',
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  overflow: 'hidden',
-  backgroundColor: 'rgba(128, 128, 128, 0.9)',
-};
 
 const buttonStyles = {
   backgroundColor: 'rgb(255, 100, 100)',
@@ -35,15 +24,17 @@ const ModalPortal = ({ onClose, children, ...props }) => {
   }, []);
 
   return (
-    <div {...props} style={modalStyles}>
-      <button
-        type="button"
-        style={buttonStyles}
-        onClick={onClose}
-      >
-        Close
-      </button>
-      {children}
+    <div {...props} className={styles.container}>
+      <div className={styles.content}>
+        <button
+          type="button"
+          className={styles.button}
+          onClick={onClose}
+        >
+          Close
+        </button>
+        {children}
+      </div>
     </div>
   );
 }

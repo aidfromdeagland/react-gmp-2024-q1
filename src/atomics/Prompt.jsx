@@ -1,16 +1,10 @@
 import PropTypes from 'prop-types';
-
-const promptStyles = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-}
+import styles from './Prompt.module.css';
 
 function Prompt({ prompt, onConfirm }) {
-  return <div style={promptStyles}>
+  return <div className={styles.container}>
     <p>{prompt}</p>
-    <button type="button" onClick={onConfirm}>Confirm</button>
+    <button type="button" onClick={onConfirm} className={styles.button}>Confirm</button>
   </div>
 }
 

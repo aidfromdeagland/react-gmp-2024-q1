@@ -1,16 +1,16 @@
-.movieForm {
+.form {
   display: flex;
   flex-direction: column;
   max-width: 400px;
   margin: auto;
 }
 
-.movieFormLabel {
+.label {
   margin-bottom: 10px;
 }
 
-.movieFormInput,
-.movieFormTextarea {
+.input,
+.textarea {
   width: 100%;
   padding: 8px;
   margin-top: 5px;
@@ -18,7 +18,7 @@
   border-radius: 4px;
 }
 
-.movieFormButton {
+.button {
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -27,6 +27,6 @@
   cursor: pointer;
 }
 
-.movieFormButton:hover {
+.button:hover {
   background-color: #0056b3;
 }
