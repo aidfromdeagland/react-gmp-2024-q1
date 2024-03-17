@@ -5,7 +5,7 @@ export default {
   component: Search,
 };
 
-export const initialQuery = {
+export const InitialQuery = {
   args: {
     initialQuery: 'Wazzup',
   },

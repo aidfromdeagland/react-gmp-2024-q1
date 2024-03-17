@@ -5,7 +5,7 @@ export default {
   component: GenreFilter,
 };
 
-export const initialGenre = {
+export const InitialGenre = {
   args: {
     genres: ['Action', 'Adventure', 'Comedy', 'Drama', 'Horror'],
     selectedGenre: 'Action',

@@ -3,7 +3,6 @@ import userEvent from '@testing-library/user-event';
 import MovieForm from './MovieForm';
 
 describe('MovieForm Component', () => {
-  const requiredFields = ['Title', 'Rated', 'Year', 'Genre', 'Poster', 'Runtime', 'Plot'];
   const onSubmitMock = jest.fn();
 
   beforeEach(() => {

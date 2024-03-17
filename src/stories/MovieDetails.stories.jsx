@@ -1,14 +1,14 @@
 import MovieDetails from '../movie-details/MovieDetails';
 
 export default {
-    title: 'MovieDetails',
-    component: MovieDetails,
-    parameters: {
-      layout: 'centered',
-    },
+  title: 'MovieDetails',
+  component: MovieDetails,
+  parameters: {
+    layout: 'centered',
+  },
 };
 
-export const movieDetails = {
+export const DetailsFilled = {
   args: {
     movie: {
       Title: 'Some title here',

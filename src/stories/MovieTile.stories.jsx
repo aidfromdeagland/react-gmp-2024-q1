@@ -5,7 +5,7 @@ export default {
   component: MovieTile,
 };
 
-export const movieTile = {
+export const MovieTileFilled = {
   args: {
     movie: {
       Title: 'Some title here',

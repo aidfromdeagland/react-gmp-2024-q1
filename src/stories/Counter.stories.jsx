@@ -2,29 +2,29 @@ import { within, userEvent, expect } from '@storybook/test';
 import Counter from '../counter/Counter';
 
 export default {
-    title: 'Counter',
-    component: Counter,
-    parameters: {
-      layout: 'centered',
-    },
+  title: 'Counter',
+  component: Counter,
+  parameters: {
+    layout: 'centered',
+  },
 };
 
-export const initialCounter = {
+export const InitialCounter = {
   args: {
     initialCounter: 42
   },
 };
 
 export const IncrementInteraction = {
-    play: async ({ canvasElement }) => {
-      const canvas = within(canvasElement);
-      const incrementButton = canvas.getByText('+');
-      const textNode = canvas.getByText((content, element) => element.tagName.toLowerCase() === 'span');
-      const currentValue = Number(textNode.textContent);
-      await expect(incrementButton).toBeInTheDocument();
-      await userEvent.click(incrementButton);
-      await expect(canvas.getByText(`${currentValue + 1}`)).toBeInTheDocument();
-    },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const incrementButton = canvas.getByText('+');
+    const textNode = canvas.getByText((content, element) => element.tagName.toLowerCase() === 'span');
+    const currentValue = Number(textNode.textContent);
+    await expect(incrementButton).toBeInTheDocument();
+    await userEvent.click(incrementButton);
+    await expect(canvas.getByText(`${currentValue + 1}`)).toBeInTheDocument();
+  },
 };
 
 export const DecrementInteraction = {

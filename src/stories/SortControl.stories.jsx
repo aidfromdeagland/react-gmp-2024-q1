@@ -10,13 +10,13 @@ export default {
   },
 };
 
-export const initialSortControl = {
+export const InitialSortControl = {
   args: {
     sortBy: '',
   },
 };
 
-export const sortSelectInteraction = {
+export const SortSelectInteraction = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const selectElement = canvas.getByDisplayValue('No sorting');
