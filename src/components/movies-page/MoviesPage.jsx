@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { useCallback, useState } from 'react';
-import MovieTile from '../movie-tile/MovieTile';
-import useMoviePortal from '../hooks/useMoviePortal';
 import styles from './MoviesPage.module.css';
+import MovieTile from '../movie-tile/MovieTile';
+import useMoviePortal from '../../hooks/useMoviePortal';
 
 const MoviesPage = ({ movies = [], applyAction }) => {
   const [modalData, setModalData] = useState(null);

@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import styles from './App.module.css';
-import Counter from './counter/Counter';
-import GenreFilter from './genre-filter/GenreFilter';
-import Search from './search/Search';
-import SortControl from './sort/SortControl';
-import MoviesPage from './movies-page/MoviesPage';
+import Counter from './components/counter/Counter';
+import GenreFilter from './components/genre-filter/GenreFilter';
+import Search from './components/search/Search';
+import SortControl from './components/sort/SortControl';
+import MoviesPage from './components/movies-page/MoviesPage';
 import moviesData from './fakeData/films.json';
 
 let movieId = moviesData.length;
@@ -23,22 +23,22 @@ function App() {
   const [matchedMovies, setMatchedMovies] = useState(movies);
   const applyMovieAction = useCallback((type, movieData) => {
     switch (type) {
-      case 'add':
-        setMovies([...movies, {...movieData, id: ++movieId}]);
-        break;
-      case 'edit': {
-        setMovies(movies.map((movie) => {
-          return movie.id === movieData.id
-            ? { ...movieData }
-            : movie;
-        }));
-        break;
-      }
-      case 'delete':
-        setMovies(movies.filter(movie => movie.Title !== movieData.Title));
-        break;
-      default:
-        break;
+    case 'add':
+      setMovies([...movies, { ...movieData, id: ++movieId }]);
+      break;
+    case 'edit': {
+      setMovies(movies.map((movie) => {
+        return movie.id === movieData.id
+          ? { ...movieData }
+          : movie;
+      }));
+      break;
+    }
+    case 'delete':
+      setMovies(movies.filter(movie => movie.Title !== movieData.Title));
+      break;
+    default:
+      break;
     }
   }, [movies]);
 
@@ -72,7 +72,7 @@ function App() {
         <Search initialQuery='initial' onSearch={console.log} />
         <GenreFilter genres={genres} selectedGenre={genre} onSelect={onGenreSelect} />
         <SortControl sortBy={sorting} onSelect={onSortSelect} />
-        <MoviesPage movies={matchedMovies} applyAction={applyMovieAction}/>
+        <MoviesPage movies={matchedMovies} applyAction={applyMovieAction} />
       </div>
       <div id='modal' />
     </>

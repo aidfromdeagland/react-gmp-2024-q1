@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import Dialog from '../atomics/Dialog';
+import Dialog from '../atomics/dialog/Dialog';
 
 export default {
   title: 'Dialog',

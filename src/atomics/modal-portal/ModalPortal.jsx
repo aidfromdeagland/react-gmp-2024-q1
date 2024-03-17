@@ -2,26 +2,21 @@ import PropTypes from 'prop-types';
 import styles from './ModalPortal.module.css'
 import { useEffect } from 'react';
 
-const buttonStyles = {
-  backgroundColor: 'rgb(255, 100, 100)',
-  alignSelf: 'center',
-}
-
 const ModalPortal = ({ onClose, children, ...props }) => {
-  const onKeyHandler = (event) => {
-    if (event.key === 'Escape' && !event.repeat) {
-      event.stopPropagation();
-      onClose();
-    }
-  };
-
   useEffect(() => {
+    const onKeyHandler = (event) => {
+      if (event.key === 'Escape' && !event.repeat) {
+        event.stopPropagation();
+        onClose();
+      }
+    };
+
     document.addEventListener('keydown', onKeyHandler);
 
     return () => {
       document.removeEventListener('keydown', onKeyHandler);
     }
-  }, []);
+  }, [onClose]);
 
   return (
     <div {...props} className={styles.container}>

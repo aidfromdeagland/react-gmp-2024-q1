@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styles from './MovieDetails.module.css';
-import ImageWithFallback from '../atomics/ImageWithFallback';
-import fallbackImageSrc from '../fakeData/no-image-placeholder.svg';
+import ImageWithFallback from '../../atomics/ImageWithFallback';
+import fallbackImageSrc from '../../fakeData/no-image-placeholder.svg';
 
 const MovieDetails = ({ movie: {
   Title,

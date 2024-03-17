@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import MoviesPage from './MoviesPage';
-import App from '../App';
+import App from '../../App';
 
 describe('MoviesPage', () => {
   const mockMovies = [
