@@ -21,32 +21,29 @@ describe('MoviesPage', () => {
     },
   ];
 
-  it('renders movie tiles correctly', () => {
+  test('renders movie tiles correctly', () => {
     render(<MoviesPage movies={mockMovies} />);
     const movieTiles = screen.getAllByRole('listitem');
+
     expect(movieTiles).toHaveLength(mockMovies.length);
   });
 
-  it('passes action to the parent modal when a movie tile is clicked', async () => {
-    render(
-      <App />
-    );
-
+  test('passes action to the parent modal when a movie tile is clicked', async () => {
+    render(<App />);
     const movieTile = screen.getByText('Avatar');
     await userEvent.click(movieTile);
+
     await waitFor(() => {
       const movieDetails = screen.getAllByRole('heading', { level: 2 })[1];
       expect(movieDetails).toBeInTheDocument();
     });
   });
 
-  it('closes movie details modal when closed', async () => {
-    render(
-      <App />
-    );
-
+  test('closes movie details modal when closed', async () => {
+    render(<App />);
     const movieTile = screen.getByText('Avatar');
     await userEvent.click(movieTile);
+
     expect(screen.queryAllByRole('heading', { level: 2 })).toHaveLength(2);
     const closeButton = screen.getByRole('button', { name: 'Close' });
     await userEvent.click(closeButton);

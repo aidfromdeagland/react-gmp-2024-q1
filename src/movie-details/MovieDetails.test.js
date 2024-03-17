@@ -12,7 +12,7 @@ describe('MovieDetails', () => {
     Rated: 'PG-13',
   };
 
-  it('renders movie details correctly', () => {
+  test('renders movie details correctly', () => {
     render(<MovieDetails movie={mockMovie} />);
 
     const titleElement = screen.getByText(mockMovie.Title);
@@ -28,7 +28,7 @@ describe('MovieDetails', () => {
     expect(ratingElement).toBeInTheDocument();
   });
 
-  it('renders fallback image when poster image fails to load', () => {
+  test('renders fallback image when poster image fails to load', () => {
     const mockMovieWithInvalidPoster = { ...mockMovie, Poster: 'initial url' };
     render(<MovieDetails movie={mockMovieWithInvalidPoster} />);
 

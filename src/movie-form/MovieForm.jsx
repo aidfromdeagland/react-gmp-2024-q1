@@ -24,7 +24,7 @@ const MovieForm = ({ movieData = {}, onSubmit }) => {
       {Object.entries(inputsSchema)
         .map(([name, config]) => {
           return <label key={name} className={styles.label}>
-            {name}:
+            {config.title}:
             {React.createElement(config.type, {
               name,
               defaultValue: movieData[name] || '',
@@ -39,7 +39,7 @@ const MovieForm = ({ movieData = {}, onSubmit }) => {
 };
 
 MovieForm.propTypes = {
-  movieInfo: PropTypes.shape({
+  movieData: PropTypes.shape({
     Title: PropTypes.string,
     Rated: PropTypes.string,
     Year: PropTypes.string,

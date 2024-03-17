@@ -11,7 +11,7 @@ describe('MovieTile', () => {
     Poster: 'path/to/poster.jpg',
   };
 
-  it('renders movie tile correctly', () => {
+  test('renders movie tile correctly', () => {
     render(<MovieTile movie={mockMovie} />);
 
     const titleElement = screen.getByText(mockMovie.Title);
@@ -25,13 +25,12 @@ describe('MovieTile', () => {
     expect(posterElement).toBeInTheDocument();
   });
 
-  it('calls click handler when clicked', async () => {
+  test('calls click handler when clicked', async () => {
     const mockClickHandler = jest.fn();
     render(<MovieTile movie={mockMovie} clickHandler={mockClickHandler} />);
-
     const movieTileElement = screen.getByText(mockMovie.Title);
     await userEvent.click(movieTileElement);
-
+    
     expect(mockClickHandler).toHaveBeenCalledTimes(1);
   });
 });
