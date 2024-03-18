@@ -1,5 +1,5 @@
 import { within, userEvent, expect } from '@storybook/test';
-import Counter from '../counter/Counter';
+import Counter from '../components/counter/Counter';
 
 export default {
   title: 'Counter',

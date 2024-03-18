@@ -1,4 +1,4 @@
-import GenreFilter from '../genre-filter/GenreFilter';
+import GenreFilter from '../components/genre-filter/GenreFilter';
 
 export default {
   title: 'GenreFilter',

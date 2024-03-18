@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import MovieForm from '../movie-form/MovieForm';
+import MovieForm from '../components/movie-form/MovieForm';
 
 export default {
   title: 'MovieForm',
@@ -21,13 +21,13 @@ export const EmptyForm = {
 export const FilledForm = {
   args: {
     movieData: {
-      Title: 'Inception',
-      Rated: 'PG-13',
-      Year: '2010',
-      Genre: 'Sci-Fi, Action',
-      Poster: 'https://example.com/inception.jpg',
-      Runtime: '148 min',
-      Plot: 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.',
+      title: 'Inception',
+      vote_average: 8,
+      release_date: '2010',
+      genres: ['Sci-Fi', 'Action'],
+      poster_path: 'https://example.com/inception.jpg',
+      runtime: 148,
+      overview: 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.',
     },
     onSubmit: onSubmitAction,
   },

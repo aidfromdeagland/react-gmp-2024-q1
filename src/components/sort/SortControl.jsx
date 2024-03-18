@@ -12,7 +12,7 @@ const SortControl = ({ sortBy = '', onSelect }) => {
       <select value={sortBy} onChange={handleSelectionChange} className={styles.select}>
         <option value="">No sorting</option>
         <option value="releaseDate">Release Date</option>
-        <option value="title">Title</option>
+        <option value="title">title</option>
       </select>
     </div>
   );

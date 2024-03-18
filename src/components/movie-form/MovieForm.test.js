@@ -11,13 +11,13 @@ describe('MovieForm Component', () => {
 
   test('fills form fields with provided data', () => {
     const movieData = {
-      Title: 'Movie Title',
-      Rated: 'PG',
-      Year: '2022',
-      Genre: 'Action',
-      Poster: 'https://example.com/poster.jpg',
-      Runtime: '120 min',
-      Plot: 'Lorem ipsum dolor sit amet',
+      title: 'Movie title',
+      vote_average: 8,
+      release_date: '2022',
+      genres: ['Action'],
+      poster_path: 'https://example.com/poster.jpg',
+      runtime: 120,
+      overview: 'Lorem ipsum dolor sit amet',
     };
     render(<MovieForm movieData={movieData} />);
 
@@ -33,13 +33,13 @@ describe('MovieForm Component', () => {
     await userEvent.click(screen.getByText('Submit'));
 
     expect(onSubmitMock).toHaveBeenCalledWith({
-      Title: '',
-      Rated: '',
-      Year: '',
-      Genre: '',
-      Poster: '',
-      Runtime: '',
-      Plot: 'kek',
+      title: '',
+      vote_average: 0,
+      release_date: '',
+      genres: [],
+      poster_path: '',
+      runtime: 0,
+      overview: 'kek',
     });
   });
 });

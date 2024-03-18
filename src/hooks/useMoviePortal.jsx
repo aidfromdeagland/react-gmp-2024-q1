@@ -45,7 +45,7 @@ function useMoviePortal(portal, onClose, onAction) {
   case 'delete':
     children = <Dialog title={dialogTitleMap[portal.type]} onClose={onClose}>
       <Prompt
-        prompt={`Do you really want to delete ${portal.data.Title}?`}
+        prompt={`Do you really want to delete ${portal.data.title}?`}
         onConfirm={() => { onAction('delete', portal.data); onClose(); }}
       />
     </Dialog>

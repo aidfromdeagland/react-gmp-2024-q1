@@ -20,29 +20,29 @@ const MovieTile = ({ movie = {}, clickHandler }) => {
     <div className={styles.container} onClick={handleTileClick}>
       <ImageWithFallback
         className={styles.poster}
-        src={movie.Poster}
+        src={movie.poster_path}
         fallback={fallbackImageSrc}
-        alt={movie.Title}
+        alt={movie.title}
       />
       <div className={styles.overlay}>
         <div className={styles.info}>
-          <p className={styles.year}>Released: {movie.Year}</p>
-          <p className={styles.genres}>Genres: {movie.Genre}</p>
+          <p className={styles.year}>Released: {movie.release_date}</p>
+          <p className={styles.genres}>Genres: {movie.genres.join(', ')}</p>
           <button type="button" onClick={handleEditClick} className={styles.button}>Edit</button>
           <button type="button" onClick={handleDeleteClick} className={`${styles.button} ${styles.delete}`}>Delete</button>
         </div>
       </div>
-      <h3 className={styles.title}>{movie.Title}</h3>
+      <h3 className={styles.title}>{movie.title}</h3>
     </div>
   );
 };
 
 MovieTile.propTypes = {
   movie: PropTypes.shape({
-    Title: PropTypes.string,
-    Year: PropTypes.string,
+    title: PropTypes.string,
+    release_date: PropTypes.string,
     genre: PropTypes.string,
-    Poster: PropTypes.string,
+    poster_path: PropTypes.string,
   }),
   clickHandler: PropTypes.func,
 };

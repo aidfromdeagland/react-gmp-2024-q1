@@ -4,28 +4,28 @@ import ImageWithFallback from '../../atomics/ImageWithFallback';
 import fallbackImageSrc from '../../fakeData/no-image-placeholder.svg';
 
 const MovieDetails = ({ movie: {
-  Title,
-  Year,
-  Runtime,
-  Plot,
-  Poster,
-  Rated,
+  title,
+  release_date,
+  runtime,
+  overview,
+  poster_path,
+  vote_average,
 } }) => {
   return (
     <div className={styles.container}>
       <div className={styles.poster}>
         <ImageWithFallback
-          src={Poster}
+          src={poster_path}
           fallback={fallbackImageSrc}
-          alt={`${Title} poster`}
+          alt={`${title} poster`}
         />
       </div>
       <div className={styles.details}>
-        <h2>{Title}</h2>
-        <p>Release Year: <span>{Year}</span></p>
-        <p>Rating: <span>{Rated}</span></p>
-        <p>Duration: <span>{Runtime}</span></p>
-        <p>Description: {Plot}</p>
+        <h2>{title}</h2>
+        <p>Release release_date: <span>{release_date}</span></p>
+        <p>Rating: <span>{vote_average}</span></p>
+        <p>Duration: <span>{runtime}</span></p>
+        <p>Description: {overview}</p>
       </div>
     </div>
   );
