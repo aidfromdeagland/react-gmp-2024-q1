@@ -13,14 +13,14 @@ describe('SortControl', () => {
     const mockOnSelect = jest.fn();
     render(<SortControl sortBy="" onSelect={mockOnSelect} />);
     const selectElement = screen.getByDisplayValue('No sorting');
-    await userEvent.selectOptions(selectElement, 'title');
+    await userEvent.selectOptions(selectElement, 'title asc');
 
-    expect(mockOnSelect).toHaveBeenCalledWith('title');
+    expect(mockOnSelect).toHaveBeenCalledWith('title asc');
   });
 
   test('displays the correct selected value', () => {
-    render(<SortControl sortBy="releaseDate" />);
-    const selectedOption = screen.getByDisplayValue('Release Date');
+    render(<SortControl sortBy="release_date asc" />);
+    const selectedOption = screen.getByDisplayValue('Release Date (asc)');
     expect(selectedOption).toBeInTheDocument();
   });
 });

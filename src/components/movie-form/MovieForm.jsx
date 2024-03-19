@@ -4,10 +4,10 @@ import styles from './MovieForm.module.css';
 
 const inputsSchema = {
   title: { title: 'title', type: 'input', className: styles.input },
-  vote_average: { title: 'Age rating', type: 'input', className: styles.input },
-  release_date: { title: 'Release year', type: 'input', className: styles.input },
+  vote_average: { title: 'Rating', type: 'input', className: styles.input },
+  release_date: { title: 'Release date', type: 'input', className: styles.input },
   genres: { title: 'Genres', type: 'input', className: styles.input },
-  poster_path: { title: 'poster_path URL', type: 'input', className: styles.input },
+  poster_path: { title: 'Poster URL', type: 'input', className: styles.input },
   runtime: { title: 'Duration', type: 'input', className: styles.input },
   overview: { title: 'Description', type: 'textarea', className: styles.input },
 };

@@ -11,15 +11,17 @@ const SortControl = ({ sortBy = '', onSelect }) => {
       <label className={styles.label}>Sort by:</label>
       <select value={sortBy} onChange={handleSelectionChange} className={styles.select}>
         <option value="">No sorting</option>
-        <option value="releaseDate">Release Date</option>
-        <option value="title">title</option>
+        <option value="release_date asc">Release Date (asc)</option>
+        <option value="release_date desc">Release Date (desc)</option>
+        <option value="title asc">Title (asc)</option>
+        <option value="title desc">Title (desc)</option>
       </select>
     </div>
   );
 };
 
 SortControl.propTypes = {
-  sortBy: PropTypes.oneOf(['', 'title', 'releaseDate']),
+  sortBy: PropTypes.oneOf(['', 'title asc', 'title desc', 'release_date asc', 'release_date desc']),
   onSelect: PropTypes.func,
 }
 

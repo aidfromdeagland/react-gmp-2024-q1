@@ -20,7 +20,7 @@ export const SortSelectInteraction = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const selectElement = canvas.getByDisplayValue('No sorting');
-    await userEvent.selectOptions(selectElement, 'title')
-    await expect(canvas.getByText('title')).toBeInTheDocument();
+    await userEvent.selectOptions(selectElement, 'title asc')
+    await expect(canvas.getByText('title (asc)')).toBeInTheDocument();
   },
 };

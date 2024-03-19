@@ -6,7 +6,7 @@ import mockMovies from '../../fakeData/films.json';
 jest.mock('../../services/movie-service', () => {
   return {
     service: {
-      getAll: jest.fn().mockResolvedValue(mockMovies),
+      getMovies: jest.fn().mockResolvedValue(mockMovies),
     },
   };
 });
