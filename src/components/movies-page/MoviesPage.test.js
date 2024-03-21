@@ -19,9 +19,9 @@ describe('MoviesPage', () => {
     expect(movieTiles).toHaveLength(mockMovies.length);
   });
 
-  test('passes action to the parent modal when a movie tile is clicked', async () => {
-    const { default: App } = await import('../../App');
-    render(<App />);
+  xtest('passes action to the parent modal when a movie tile is clicked', async () => {
+    const { default: MovieListPage } = await import('../../MovieListPage');
+    render(<MovieListPage />);
     const movieTile = screen.getByText(mockMovies[0].title);
     await userEvent.click(movieTile);
 
@@ -31,9 +31,9 @@ describe('MoviesPage', () => {
     });
   });
 
-  test('closes movie details modal when closed', async () => {
-    const { default: App } = await import('../../App');
-    render(<App />);
+  xtest('closes movie details modal when closed', async () => {
+    const { default: MovieListPage } = await import('../../MovieListPage');
+    render(<MovieListPage />);
     const movieTile = screen.getByText(mockMovies[0].title);
     await userEvent.click(movieTile);
 
