@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, Outlet } from 'react-router-dom';
 import styles from './MovieListPage.module.css';
 import GenreFilter from './components/genre-filter/GenreFilter';
 import Search from './components/search/Search';
@@ -45,29 +45,19 @@ function MovieListPage() {
     setParams(params);
   };
 
-  const onSearch = (query) => {
-    if (query === params.get('query')) {
-      return;
-    }
-    if (!query) {
-      params.delete('query');
-    } else {
-      params.set('query', query);
-    }
-    setParams(params);
-  };
-
   return (
     <>
       <div className={styles.container}>
+        
         <div className={styles.topWidget}>
-          {detailedMovie
+          <Outlet />
+          {/* {detailedMovie
             ? <>
               <button onClick={() => setDetailedMovie(null)}> Search </button>
               <MovieDetails movie={detailedMovie} />
             </>
             : <Search initialQuery={params.get('query') || ''} onSearch={onSearch}
-            />}
+            />} */}
         </div>
         <GenreFilter genres={genres} selectedGenre={params.get('genre') || ''} onSelect={onGenreSelect} />
         <SortControl sortBy={params.get('sorting') || ''} onSelect={onSortSelect} />
