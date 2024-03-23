@@ -1,18 +1,18 @@
 import PropTypes from 'prop-types';
-import './GenreFilter.css';
+import styles from './GenreFilter.module.css';
 
 const GenreFilter = ({ genres, selectedGenre, onSelect }) => {
   return (
-    <ul className="genre-list">
+    <ul className={styles.list} data-testid='genre-filter'>
       {
         genres.map((genre) => (
-          <li key={genre} className="genre-item">
+          <li key={genre} className={styles.listItem}>
             <button
-              onClick={() => {onSelect(genre)}}
-              className={selectedGenre === genre ? 'selected' : ''}
+              onClick={() => { onSelect(genre) }}
+              className={selectedGenre === genre ? styles.selected : ''}
               type='button'
             >
-            {genre}
+              {genre}
             </button>
           </li>
         ))
@@ -26,5 +26,5 @@ GenreFilter.propTypes = {
   selectedGenre: PropTypes.string,
   onSelect: PropTypes.func,
 };
-  
+
 export default GenreFilter;

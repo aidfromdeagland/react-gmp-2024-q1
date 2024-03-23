@@ -1,30 +1,30 @@
 /// <reference types="cypress" />
 
-describe('counter', () => {
+describe('genre-filter', () => {
     beforeEach(() => {
       cy.visit('http://localhost:9999');
     });
   
     it('has all genres displayed', () => {
-      cy.get('ul li').should('have.length', 8);
+      cy.get('[data-testid="genre-filter"] > li').should('have.length', 11);
     });
 
     it('should highlight selected genre', () => {
       cy
-        .contains('Lorem')
+        .contains('Action')
         .should('have.css', 'background-color', 'rgb(128, 128, 128)')
         .and('have.css', 'color', 'rgb(255, 255, 255)');
     });
 
     it('should highlight clicked genre and unset previously selected one', () => {
         cy
-        .contains('elit')
+        .contains('Drama')
         .click()
         .should('have.css', 'background-color', 'rgb(128, 128, 128)')
         .and('have.css', 'color', 'rgb(255, 255, 255)');
 
       cy
-        .contains('Lorem')
+        .contains('Action')
         .should('have.css', 'background-color', 'rgb(255, 255, 255)')
         .and('have.css', 'color', 'rgb(128, 128, 128)');
     });

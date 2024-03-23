@@ -3,31 +3,47 @@ import styles from './MovieTile.module.css';
 import ImageWithFallback from '../atomics/ImageWithFallback';
 import fallbackImageSrc from '../fakeData/no-image-placeholder.svg'
 
-const MovieTile = ({ title, year, genres, posterUrl, clickHandler }) => {
+const MovieTile = ({ movie = {}, clickHandler }) => {
+  const handleTileClick = () => {
+    clickHandler('show', movie);
+  };
+  const handleEditClick = (event) => {
+    event.stopPropagation();
+    clickHandler('edit', movie);
+  };
+  const handleDeleteClick = (event) => {
+    event.stopPropagation();
+    clickHandler('delete', movie);
+  };
+
   return (
-    <div className={styles.container} onClick={clickHandler}>
+    <div className={styles.container} onClick={handleTileClick}>
       <ImageWithFallback
         className={styles.poster}
-        src={posterUrl}
+        src={movie.Poster}
         fallback={fallbackImageSrc}
-        alt={title}
+        alt={movie.Title}
       />
       <div className={styles.overlay}>
         <div className={styles.info}>
-          <p className={styles.year}>Released: {year}</p>
-          <p className={styles.genres}>Genres: {genres}</p>
+          <p className={styles.year}>Released: {movie.Year}</p>
+          <p className={styles.genres}>Genres: {movie.Genre}</p>
+          <button type="button" onClick={handleEditClick} className={styles.button}>Edit</button>
+          <button type="button" onClick={handleDeleteClick} className={`${styles.button} ${styles.delete}`}>Delete</button>
         </div>
       </div>
-      <h3 className={styles.title}>{title}</h3>
+      <h3 className={styles.title}>{movie.Title}</h3>
     </div>
   );
 };
 
 MovieTile.propTypes = {
-  title: PropTypes.string,
-  year: PropTypes.string,
-  genres: PropTypes.string,
-  posterUrl: PropTypes.string,
+  movie: PropTypes.shape({
+    Title: PropTypes.string,
+    Year: PropTypes.string,
+    genre: PropTypes.string,
+    Poster: PropTypes.string,
+  }),
   clickHandler: PropTypes.func,
 };
 

@@ -1,4 +1,4 @@
-.counter {
+.container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -9,7 +9,7 @@
   background-color: rgb(224, 224, 224);
 }
 
-.counter button {
+.container button {
   background-color: rgb(255, 255, 255);
   color: rgb(128, 128, 128);
   border: none;
@@ -19,11 +19,11 @@
   border-radius: 3px;
 }
 
-.counter button:hover {
+.container button:hover {
   background-color: rgb(196, 196, 196);
 }
 
-.counter span {
+.container span {
   font-size: 24px;
   font-weight: bold;
   color: rgb(128, 128, 128);

@@ -22,7 +22,7 @@
     margin-top: 0;
 }
 
-p > span {
+.details p > span {
     vertical-align: middle;
     padding: 0 0.5em;
     border: 1px solid rgb(255, 128, 128);

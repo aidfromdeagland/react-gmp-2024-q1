@@ -1,4 +1,4 @@
-.genre-list {
+.list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -7,14 +7,14 @@
   padding: 0;
 }
 
-.genre-item {
+.listItem {
   white-space: nowrap;
   display: flex;
   flex-direction: column;
   flex: 0 0 0;
 }
 
-.genre-item button {
+.listItem button {
   background-color: rgb(255, 255, 255);
   color: rgb(128, 128, 128);
   border: none;
@@ -24,11 +24,11 @@
   border-radius: 5px;
 }
 
-.genre-item button.selected {
+.listItem button.selected {
   background-color: rgb(128, 128, 128);
   color: rgb(255, 255, 255);
 }
 
-.genre-item button:hover {
+.listItem button:hover {
   background-color: rgb(196, 196, 196);
 }
