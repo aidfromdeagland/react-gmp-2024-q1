@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import ModalPortal from "./ModalPortal";
+import ModalPortal from "../modal-portal/ModalPortal";
 import styles from './Dialog.module.css';
 
 function Dialog({ title, onClose, children }) {

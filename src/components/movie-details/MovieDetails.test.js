@@ -4,22 +4,22 @@ import MovieDetails from './MovieDetails';
 describe('MovieDetails', () => {
   const mockMovie = {
     id: 1,
-    Title: 'Movie 1',
-    Year: '2021',
-    Runtime: '120 min',
-    Plot: 'A great movie plot',
-    Poster: 'path/to/poster.jpg',
-    Rated: 'PG-13',
+    title: 'Movie 1',
+    release_date: '2021',
+    runtime: 120,
+    overview: 'A great movie plot',
+    poster_path: 'path/to/poster.jpg',
+    vote_average: 8,
   };
 
   test('renders movie details correctly', () => {
     render(<MovieDetails movie={mockMovie} />);
 
-    const titleElement = screen.getByText(mockMovie.Title);
+    const titleElement = screen.getByText(mockMovie.title);
     const yearElement = screen.getByText(/2021/);
-    const durationElement = screen.getByText(/120 min/);
-    const descriptionElement = screen.getByText(`Description: ${mockMovie.Plot}`);
-    const ratingElement = screen.getByText(/PG-13/);
+    const durationElement = screen.getByText(/120/);
+    const descriptionElement = screen.getByText(`Description: ${mockMovie.overview}`);
+    const ratingElement = screen.getByText(/8/);
 
     expect(titleElement).toBeInTheDocument();
     expect(yearElement).toBeInTheDocument();
@@ -29,7 +29,7 @@ describe('MovieDetails', () => {
   });
 
   test('renders fallback image when poster image fails to load', () => {
-    const mockMovieWithInvalidPoster = { ...mockMovie, Poster: 'initial url' };
+    const mockMovieWithInvalidPoster = { ...mockMovie, poster_path: 'initial url' };
     render(<MovieDetails movie={mockMovieWithInvalidPoster} />);
 
     const fallbackImage = screen.getByAltText('Movie 1 poster');

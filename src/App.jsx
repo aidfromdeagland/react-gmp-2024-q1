@@ -1,46 +1,18 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './App.module.css';
-import Counter from './counter/Counter';
-import GenreFilter from './genre-filter/GenreFilter';
-import Search from './search/Search';
-import SortControl from './sort/SortControl';
-import MoviesPage from './movies-page/MoviesPage';
-import moviesData from './fakeData/films.json';
+import GenreFilter from './components/genre-filter/GenreFilter';
+import Search from './components/search/Search';
+import SortControl from './components/sort/SortControl';
+import MoviesPage from './components/movies-page/MoviesPage';
+import { service as MovieService } from './services/movie-service';
 
-let movieId = moviesData.length;
-
-const SortMap = new Map([
-  ['releaseDate', ((a, b) => a.Year > b.Year ? 1 : -1)],
-  ['title', ((a, b) => a.Title > b.Title ? 1 : -1)],
-]);
-
-const genres = Array.from(new Set(moviesData.map(film => film.Genre).join(', ').split(', ')));
+const genres = ['Action', 'Adventure', 'Animation', 'Comedy', 'Drama', 'Family', 'Fantasy', 'Music', 'Mystery', 'Romance', 'Science Fiction', 'Thriller', 'War'];
 
 function App() {
-  const [genre, setGenre] = useState(genres[0]);
+  const [genre, setGenre] = useState('');
   const [sorting, setSorting] = useState('');
-  const [movies, setMovies] = useState(moviesData);
-  const [matchedMovies, setMatchedMovies] = useState(movies);
-  const applyMovieAction = useCallback((type, movieData) => {
-    switch (type) {
-      case 'add':
-        setMovies([...movies, {...movieData, id: ++movieId}]);
-        break;
-      case 'edit': {
-        setMovies(movies.map((movie) => {
-          return movie.id === movieData.id
-            ? { ...movieData }
-            : movie;
-        }));
-        break;
-      }
-      case 'delete':
-        setMovies(movies.filter(movie => movie.Title !== movieData.Title));
-        break;
-      default:
-        break;
-    }
-  }, [movies]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [movies, setMovies] = useState([]);
 
   const onGenreSelect = (selectedGenre) => {
     if (selectedGenre === genre) {
@@ -59,20 +31,22 @@ function App() {
   };
 
   useEffect(() => {
-    const moviesFilteredByGenre = movies.filter((movie) => genre ? movie.Genre?.includes(genre) : true);
-    const sorter = SortMap.get(sorting);
-    const moviesOrdered = sorter ? moviesFilteredByGenre.sort(sorter) : moviesFilteredByGenre;
-    setMatchedMovies(moviesOrdered);
-  }, [movies, genre, sorting]);
+    const fetchMovies = async (genre, sorting, searchQuery) => {
+      const movies = await MovieService.getMovies({ genre, sorting, searchQuery });
+      setMovies(movies);
+    }
+
+    fetchMovies(genre, sorting, searchQuery);
+
+  }, [genre, sorting, searchQuery]);
 
   return (
     <>
       <div className={styles.container}>
-        <Counter initialCounter={42} />
-        <Search initialQuery='initial' onSearch={console.log} />
+        <Search initialQuery={searchQuery} onSearch={(query) => { setSearchQuery(query) }} />
         <GenreFilter genres={genres} selectedGenre={genre} onSelect={onGenreSelect} />
         <SortControl sortBy={sorting} onSelect={onSortSelect} />
-        <MoviesPage movies={matchedMovies} applyAction={applyMovieAction}/>
+        <MoviesPage movies={movies} applyAction={console.log} />
       </div>
       <div id='modal' />
     </>

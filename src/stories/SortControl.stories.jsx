@@ -1,5 +1,5 @@
 import { within, userEvent, expect } from '@storybook/test';
-import SortControl from '../sort/SortControl';
+import SortControl from '../components/sort/SortControl';
 
 export default {
   title: 'SortControl',
@@ -10,17 +10,17 @@ export default {
   },
 };
 
-export const initialSortControl = {
+export const InitialSortControl = {
   args: {
     sortBy: '',
   },
 };
 
-export const sortSelectInteraction = {
+export const SortSelectInteraction = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const selectElement = canvas.getByDisplayValue('No sorting');
-    await userEvent.selectOptions(selectElement, 'title')
-    await expect(canvas.getByText('Title')).toBeInTheDocument();
+    await userEvent.selectOptions(selectElement, 'title asc')
+    await expect(canvas.getByText('title (asc)')).toBeInTheDocument();
   },
 };

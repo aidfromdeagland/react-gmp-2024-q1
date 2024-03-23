@@ -1,11 +1,11 @@
-import GenreFilter from '../genre-filter/GenreFilter';
+import GenreFilter from '../components/genre-filter/GenreFilter';
 
 export default {
   title: 'GenreFilter',
   component: GenreFilter,
 };
 
-export const initialGenre = {
+export const InitialGenre = {
   args: {
     genres: ['Action', 'Adventure', 'Comedy', 'Drama', 'Horror'],
     selectedGenre: 'Action',

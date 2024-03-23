@@ -11,18 +11,18 @@ describe('Dialog Component', () => {
 
   test('renders dialog with title and children', () => {
     render(
-      <Dialog title="Dialog Title" onClose={onCloseMock}>
+      <Dialog title="Dialog title" onClose={onCloseMock}>
         <div>Dialog Content</div>
       </Dialog>
     );
 
-    expect(screen.getByText('Dialog Title')).toBeInTheDocument();
+    expect(screen.getByText('Dialog title')).toBeInTheDocument();
     expect(screen.getByText('Dialog Content')).toBeInTheDocument();
   });
 
   test('calls onClose when close button is clicked', async () => {
     render(
-      <Dialog title="Dialog Title" onClose={onCloseMock}>
+      <Dialog title="Dialog title" onClose={onCloseMock}>
         <div>Dialog Content</div>
       </Dialog>
     );

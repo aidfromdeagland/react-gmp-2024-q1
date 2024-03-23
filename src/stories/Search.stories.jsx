@@ -1,11 +1,11 @@
-import Search from '../search/Search';
+import Search from '../components/search/Search';
 
 export default {
   title: 'Search',
   component: Search,
 };
 
-export const initialQuery = {
+export const InitialQuery = {
   args: {
     initialQuery: 'Wazzup',
   },
