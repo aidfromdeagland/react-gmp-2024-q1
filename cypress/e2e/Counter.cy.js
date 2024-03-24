@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-xdescribe('counter', () => {
+xdescribe('Counter', () => {
   beforeEach(() => {
     cy.visit('http://localhost:9999')
   });

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, defer } from "react-router-dom";
 import { service as movieService } from './services/movie-service.js';
 import MovieListPage from './MovieListPage.jsx'
-import Search from './components/search/Search';
+import Search from './components/search/Search.jsx';
 import MovieDetailsWithLoading from './components/movie-details/MovieDetailsWithLoading.jsx';
 import './index.css'
 

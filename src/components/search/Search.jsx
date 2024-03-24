@@ -40,7 +40,7 @@ const Search = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid='search'>
       <input
         className={styles.input}
         type="text"

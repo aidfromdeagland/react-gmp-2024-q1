@@ -9,7 +9,7 @@ const SortControl = ({ sortBy = '', onSelect }) => {
   return (
     <div className={styles.container}>
       <label className={styles.label}>Sort by:</label>
-      <select value={sortBy} onChange={handleSelectionChange} className={styles.select}>
+      <select value={sortBy} onChange={handleSelectionChange} className={styles.select} data-testid="sort-control">
         <option value="">No sorting</option>
         <option value="release_date asc">Release Date (asc)</option>
         <option value="release_date desc">Release Date (desc)</option>

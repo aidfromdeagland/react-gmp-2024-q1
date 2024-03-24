@@ -12,7 +12,7 @@ const MovieDetails = ({ movie: {
   vote_average,
 } }) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid='movie-details'>
       <div className={styles.poster}>
         <ImageWithFallback
           src={poster_path}

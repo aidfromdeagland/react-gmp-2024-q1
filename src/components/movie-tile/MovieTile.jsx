@@ -17,7 +17,7 @@ const MovieTile = ({ movie = {}, clickHandler }) => {
   };
 
   return (
-    <div className={styles.container} onClick={handleTileClick}>
+    <div className={styles.container} onClick={handleTileClick} data-testid={'movie-tile'}>
       <ImageWithFallback
         className={styles.poster}
         src={movie.poster_path}
