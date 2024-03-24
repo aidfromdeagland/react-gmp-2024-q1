@@ -1,19 +1,29 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './Search.module.css';
 
-const Search = ({ initialQuery, onSearch }) => {
-  const [query, setQuery] = useState(initialQuery);
+const Search = () => {
+  const [params, setParams] = useSearchParams();
+  const [searchValue, setSearchValue] = useState(params.get('query') || '');
   const [isInputFocused, setIsInputFocused] = useState(false);
 
   const handleSearch = () => {
-    onSearch(query);
-  };
+    if (searchValue === params.get('query')) {
+      return;
+    }
+    if (!searchValue) {
+      params.delete('query');
+    } else {
+      params.set('query', searchValue);
+    }
+    setParams(params);
+  }
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter' && !event.repeat && isInputFocused) {
       event.stopPropagation();
-      onSearch(query);
+      handleSearch();
     }
   };
 
@@ -26,15 +36,15 @@ const Search = ({ initialQuery, onSearch }) => {
   };
 
   const handleInputChange = (event) => {
-    setQuery(event.target.value);
+    setSearchValue(event.target.value);
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid='search'>
       <input
         className={styles.input}
         type="text"
-        value={query}
+        value={searchValue}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
         onFocus={handleInputFocus}

@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('genre-filter', () => {
+describe('GenreFilter', () => {
   beforeEach(() => {
     cy.visit('http://localhost:9999');
   });

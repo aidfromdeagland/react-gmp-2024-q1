@@ -1,13 +1,8 @@
 class MovieService {
-  constructor(baseUrl = 'http://localhost:4000') {
+  constructor(baseUrl = 'http://localhost:4000/movies') {
     this.baseUrl = baseUrl;
-    this.resetAbortController();
   }
 
-  resetAbortController() {
-    this.abortController = null;
-    this.signal = null;
-  }
 
   async getMovies({ genre, sorting, searchQuery }) {
     const [sortCriteria, sortOrder] = sorting ? sorting.split(' ') : [];
@@ -25,18 +20,12 @@ class MovieService {
       .map(([key, value]) => `${key}=${value}`)
       .join('&');
 
-    const baseUrl = `${this.baseUrl}/movies`;
-    const requestUrl = queryParams ? `${baseUrl}?${queryParams}` : baseUrl;
-
-    if (this.abortController) {
-      this.abortController.abort(this.signal);
-      this.resetAbortController();
-    }
+    const requestUrl = queryParams ? `${this.baseUrl}?${queryParams}` : this.baseUrl;
+    this.getMoviesAbortController?.abort();
+    this.getMoviesAbortController = new AbortController();
 
     try {
-      this.abortController = new AbortController();
-      this.signal = this.abortController.signal;
-      const rawResponse = await fetch(requestUrl, { signal: this.signal });
+      const rawResponse = await fetch(requestUrl, { signal: this.getMoviesAbortController.signal });
       const moviesResponse = await rawResponse.json();
       return moviesResponse.data;
     } catch (error) {
@@ -44,10 +33,32 @@ class MovieService {
         console.log(`request ${requestUrl} aborted`);
       } else {
         console.error(`request ${requestUrl} failed`, error);
+        throw error;
       }
     }
     finally {
-      this.resetAbortController();
+      this.getMoviesAbortController = null;
+    }
+  }
+
+  async getById(id) {
+    const requestUrl = `${this.baseUrl}/${id}`; 
+    this.getByIdAbortController?.abort();
+    this.getByIdAbortController = new AbortController();
+
+    try {
+      const rawResponse = await fetch(requestUrl, { signal: this.getByIdAbortController.signal });
+      return await rawResponse.json();
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        console.log(`request ${requestUrl} aborted`);
+      } else {
+        console.error(`request ${requestUrl} failed`, error);
+      }
+      throw error;
+    }
+    finally {
+      this.getByIdAbortController = null;
     }
   }
 }
