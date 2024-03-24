@@ -1,9 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, defer } from "react-router-dom";
+import { service as movieService } from './services/movie-service.js';
 import MovieListPage from './MovieListPage.jsx'
 import Search from './components/search/Search';
-import MovieDetails from './components/movie-details/MovieDetails';
+import MovieDetailsWithLoading from './components/movie-details/MovieDetailsWithLoading.jsx';
 import './index.css'
 
 const router = createBrowserRouter([
@@ -17,7 +18,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/:movieId",
-        element: <MovieDetails />,
+        element: <MovieDetailsWithLoading />,
+        loader: async (routeData) => {
+          const id = routeData.params.movieId;
+          return id
+            ? defer({ movie: movieService.getById(id) })
+            : null;
+        },
       },
     ],
   },

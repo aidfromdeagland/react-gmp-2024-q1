@@ -2,16 +2,13 @@ import { useEffect, useState } from 'react';
 import { useSearchParams, Outlet } from 'react-router-dom';
 import styles from './MovieListPage.module.css';
 import GenreFilter from './components/genre-filter/GenreFilter';
-import Search from './components/search/Search';
 import SortControl from './components/sort/SortControl';
 import MoviesPage from './components/movies-page/MoviesPage';
-import MovieDetails from './components/movie-details/MovieDetails';
 import { service as MovieService } from './services/movie-service';
 
 const genres = ['Action', 'Adventure', 'Animation', 'Comedy', 'Drama', 'Family', 'Fantasy', 'Music', 'Mystery', 'Romance', 'Science Fiction', 'Thriller', 'War'];
 
 function MovieListPage() {
-  const [detailedMovie, setDetailedMovie] = useState(null);
   const [movies, setMovies] = useState([]);
   const [params, setParams] = useSearchParams();
 
@@ -51,17 +48,10 @@ function MovieListPage() {
         
         <div className={styles.topWidget}>
           <Outlet />
-          {/* {detailedMovie
-            ? <>
-              <button onClick={() => setDetailedMovie(null)}> Search </button>
-              <MovieDetails movie={detailedMovie} />
-            </>
-            : <Search initialQuery={params.get('query') || ''} onSearch={onSearch}
-            />} */}
         </div>
         <GenreFilter genres={genres} selectedGenre={params.get('genre') || ''} onSelect={onGenreSelect} />
         <SortControl sortBy={params.get('sorting') || ''} onSelect={onSortSelect} />
-        <MoviesPage movies={movies} showDetails={setDetailedMovie} />
+        <MoviesPage movies={movies} />
       </div>
       <div id='modal' />
     </>

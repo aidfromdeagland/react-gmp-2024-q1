@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './MoviesPage.module.css';
 import MovieTile from '../movie-tile/MovieTile';
 import useMoviePortal from '../../hooks/useMoviePortal';
@@ -8,19 +8,20 @@ import useMoviePortal from '../../hooks/useMoviePortal';
 const MoviesPage = ({ movies = [] }) => {
   const [modalData, setModalData] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+
   const closeModal = useCallback(() => {
     setModalData(null);
   }, []);
   const handleClickAction = useCallback((type, data) => {
     if (!type) {
       setModalData(null);
-    } else if (type === 'show') {
-      navigate(`${data.id}`);
-      // showDetails(data);
+    } else if (type === 'show' && location.pathname !== `/${data.id}`) {
+      navigate(`${data.id}${location.search}`);
     } else {
       setModalData({ type, data });
     }
-  }, [navigate]);
+  }, [location.search, location.pathname]);
 
   const moviePortal = useMoviePortal(modalData, closeModal);
 
@@ -44,7 +45,6 @@ const MoviesPage = ({ movies = [] }) => {
 
 MoviesPage.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.object),
-  showDetails: PropTypes.func,
 }
 
 export default MoviesPage;
